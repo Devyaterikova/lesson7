@@ -1,5 +1,5 @@
 <?php
-$file_list = glob('tests/*.json');
+$file_list = glob('uploads/*.json');
 $number = 0;
 ?>
 
@@ -20,7 +20,7 @@ foreach ($file_list as $key => $file)
     }
 ?>
 
-    <p><a href="admin.php">Загрузить тест</a></p>
+    <p><a href="admin.php">Загрузка теста</a></p>
     <p><a href="list.php">Список тестов</a></p>
 
 </body>

@@ -1,5 +1,5 @@
 <?php
-$file_list = glob('tests/*.json');
+$file_list = glob('uploads/*.json');
 $num = $_GET['test'];
 $num = (int)$num;
 $num++;
@@ -13,7 +13,7 @@ foreach ($file_list as $key => $file)
 }
 if (empty($decode_file))
 {
-    header(http_response_code(404));
+    http_response_code(404);
     exit;
 }
 $count_answer = 0;
@@ -25,7 +25,7 @@ if(!empty($_POST['name_user']))
     $colorBack = imagecolorallocate($image, 0,0,0);
     $textColor = imagecolorallocate($image, 0,0,0);
     $fontFile = __DIR__ . '/font.ttf';
-    $image_res = imagecreatefrompng( 'certificat.png');
+    $image_res = imagecreatefrompng( 'image.png');
     imagefill($image, 0, 0, $colorBack);
     imagecopy($image, $image_res, 0, 0, 0, 0, 866, 618);
     if(!file_exists($fontFile))
@@ -85,12 +85,12 @@ if(!empty($_POST['name_user']))
                 echo "<p>Хорошо</p>";
             } ?>
         <form action="" method="post">
-            <input type="text" name="name_user" placeholder="Введите свое имя">
+            <input type="text" name="name_user" placeholder="Введите имя">
             <input type="submit" value="Отправить">
         </form>
     <?php }?>
     <br><br>
-    <p><a href="list.php">Выбор теств</a></p>
+    <p><a href="list.php">Выбор теста</a></p>
     <p><a href="admin.php">Загрузка теста</a></p>
 </body>
 </html>

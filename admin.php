@@ -1,5 +1,5 @@
 <?php
-$file_list = glob('tests/*.json');
+$file_list = glob('uploads/*.json');
 $file_send = false;
 // Проверяем
 if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
@@ -9,7 +9,7 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
         echo '<pre>';
         $file_user = basename($file);
      if ($_FILES['test']['name'] == $file_user){
-        header('Refresh: 5;');
+        header('Refresh: 2;');
         echo "Файл с таким именем существует";
         exit;
     }
@@ -19,8 +19,8 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
     if (end($i) == "json")
     {
 //    Проверяем структуру
-        $file_tmp = $_FILES['test']['tmp_name'];
-        $file_get_tmp = file_get_contents($file_tmp);
+        $fileTmp = $_FILES['test']['tmp_name'];
+        $file_get_tmp = file_get_contents($fileTmp);
         $decode_tmp = json_decode($file_get_tmp, true);
         foreach ($decode_tmp as $test_tmp)
         {
@@ -30,9 +30,9 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
                 {
                     if((isset($test_tmp['answers'][$i]['answer']) && isset($test_tmp['answers'][$i]['result'])) == false)
                     {
-                        header('Refresh: 5;');
+                        header('Refresh: 2;');
                         echo "Ошибка." . "<br>" . "Повторите еще раз.";
-                        unlink($file_tmp);
+                        unlink($fileTmp);
                         echo "<p><a href=\"admin.php\">Загрузить тест</a></p>";
                         echo "<p><a href=\"list.php\">Выбрать тест</a></p>";
                         exit;
@@ -41,9 +41,9 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
             }
             else
             {
-                header('Refresh: 5;');
+                header('Refresh: 2;');
                 echo "Ошибка." . "<br>" . "Повторите еще раз.";
-                unlink($file_tmp);
+                unlink($fileTmp);
                 echo "<p><a href=\"admin.php\">Загрузить тест</a></p>";
                 echo "<p><a href=\"list.php\">Выбрать тест</a></p>";
                 exit;
@@ -51,7 +51,7 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
         }
         $file_name = $_FILES['test']['name'];
         $tmp_file = $_FILES['test']['tmp_name'];
-        $upload_dir = 'uploads/';
+        $upload_dir = DIR.'uploads/';
         if (($_FILES['test']['error'] == UPLOAD_ERR_OK) &&
             move_uploaded_file($tmp_file, $upload_dir . $file_name))
         {
