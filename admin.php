@@ -51,11 +51,11 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
         }
         $file_name = $_FILES['test']['name'];
         $tmp_file = $_FILES['test']['tmp_name'];
-        $upload_dir = DIR.'uploads/';
+        $upload_dir =__DIR__ =='uploads/';
         if (($_FILES['test']['error'] == UPLOAD_ERR_OK) &&
             move_uploaded_file($tmp_file, $upload_dir . $file_name))
         {
-            $file_send = true;
+            $file_list = true;
             echo "Файл отправлен";
         }
         else
