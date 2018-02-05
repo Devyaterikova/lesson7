@@ -56,7 +56,8 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
             move_uploaded_file($tmp_file, $upload_dir . $file_name))
         {
             $file_list = true;
-            echo "Файл отправлен";
+            echo "Вы находитесь на странице Выбора тестов";
+            header ("list.php");
         }
         else
         {
