@@ -57,7 +57,7 @@ if (isset($_FILES['test']['name']) && !empty($_FILES['test']['name']))
         {
             $file_list = true;
             echo "Вы находитесь на странице Выбора тестов";
-            header ("list.php");
+            header("Location: list.php");
         }
         else
         {
